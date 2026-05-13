@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Fanntom — простые и быстрые сайты</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f7f9fc;
+            color: #1e293b;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Шапка (как в Structark) */
+        .header {
+            background: white;
+            border-bottom: 1px solid #e9eef3;
+            padding: 14px 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .header-inner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 34px;
+            height: 34px;
+            background: #ff6b4a;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: #0f172a;
+        }
+
+        .nav {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #334155;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav a:hover {
+            color: #ff6b4a;
+        }
+
+        .contact-strip {
+            background: #fef9f5;
+            border-bottom: 1px solid #e9eef3;
+            padding: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .contact-strip .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .phone-list a {
+            color: #1e293b;
+            text-decoration: none;
+            margin-right: 18px;
+            font-weight: 500;
+        }
+
+        .btn-small {
+            background: #ff6b4a;
+            color: white;
+            padding: 6px 18px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: background 0.2s;
+        }
+
+        .btn-small:hover {
+            background: #e55a3b;
+        }
+
+        /* Основные секции */
+        .section {
+            padding: 60px 0;
+            border-bottom: 1px solid #eef2f6;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+            color: #0f172a;
+        }
+
+        .hero {
+            background: white;
+            text-align: center;
+            padding: 50px 0 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ff6b4a, #3b82f6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin: 0 auto 24px;
+            color: #475569;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: #ff6b4a;
+            color: white;
+            padding: 10px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #e55a3b;
+            transform: translateY(-1px);
+        }
+
+        /* Карточки услуг */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 28px;
+            margin-top: 16px;
+        }
+
+        .service-card {
+            background: white;
+            border: 1px solid #e9eef3;
+            border-radius: 20px;
+            padding: 28px 22px;
+            transition: all 0.2s;
+        }
+
+        .service-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border-color: #ffd1c4;
+        }
+
+        .service-icon {
+            font-size: 2.2rem;
+            margin-bottom: 18px;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .price {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #ff6b4a;
+            margin: 12px 0 10px;
+        }
+
+        .service-desc {
+            color: #5b6e8c;
+            font-size: 0.9rem;
+            line-height: 1.45;
+        }
+
+        /* Преимущества (простые пункты) */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-item {
+            background: #ffffff;
+            border: 1px solid #eef2f6;
+            border-radius: 18px;
+            padding: 24px 20px;
+            text-align: center;
+        }
+
+        .feature-emoji {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .feature-item h4 {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .feature-item p {
+            color: #5b6e8c;
+            font-size: 0.85rem;
+        }
+
+        /* Контакты */
+        .contact-block {
+            background: #ffffff;
+            border: 1px solid #eef2f6;
+            border-radius: 28px;
+            padding: 36px 28px;
+            text-align: center;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        .contact-block p {
+            margin: 12px 0;
+        }
+
+        .contact-phone {
+            font-size: 1.6rem;
+            font-weight: 700;
+            font-family: monospace;
+            letter-spacing: -0.5px;
+            color: #0f172a;
+            text-decoration: none;
+            display: inline-block;
+            margin: 8px 0;
+        }
+
+        .contact-phone:hover {
+            color: #ff6b4a;
+        }
+
+        .contact-email {
+            color: #3b82f6;
+            text-decoration: none;
+            font-size: 1rem;
+            word-break: break-all;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 28px 0;
+            font-size: 0.8rem;
+            color: #6c7a91;
+            border-top: 1px solid #eef2f6;
+            background: white;
+        }
+
+        @media (max-width: 700px) {
+            .container { padding: 0 20px; }
+            .hero h1 { font-size: 1.9rem; }
+            h2 { font-size: 1.5rem; }
+            .contact-phone { font-size: 1.2rem; }
+            .header-inner { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container header-inner">
+        <div class="logo">
+            <div class="logo-icon">F</div>
+            <span class="logo-text">fanntom</span>
+        </div>
+        <nav class="nav">
+            <a href="#services">Услуги</a>
+            <a href="#features">Преимущества</a>
+            <a href="#contact">Контакты</a>
+        </nav>
+    </div>
+</header>
+
+<div class="contact-strip">
+    <div class="container">
+        <div class="phone-list" id="phoneStrip">
+            <!-- сюда js вставит рандомные номера -->
+            <a href="#">+7 (···) ···-··-··</a>
+            <a href="#">+7 (···) ···-··-··</a>
+        </div>
+        <a href="#contact" class="btn-small">Заказать звонок</a>
+    </div>
+</div>
+
+<main>
+    <!-- Герой -->
+    <section class="hero">
+        <div class="container">
+            <h1>Создаём сайты, которые работают</h1>
+            <p>Без перегруза, сложных анимаций и долгих ожиданий. Просто, надёжно, с душой.</p>
+            <a href="#contact" class="btn-primary">Обсудить проект</a>
+        </div>
+    </section>
+
+    <!-- Услуги (3 карточки) -->
+    <section id="services" class="section">
+        <div class="container">
+            <h2>Что мы делаем</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📄</div>
+                    <h3>Лендинг / Одностраничный</h3>
+                    <div class="price">от 5 900 ₽</div>
+                    <p class="service-desc">Продающий лендинг под ключ, адаптивный, быстрый, с акцентом на конверсию.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏢</div>
+                    <h3>Многостраничный сайт</h3>
+                    <div class="price">от 9 900 ₽</div>
+                    <p class="service-desc">Корпоративный портал, каталог или блог. Удобная админ-панель и структура.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Поддержка и доработки</h3>
+                    <div class="price">от 1 500 ₽/мес</div>
+                    <p class="service-desc">Обновления, правки, техподдержка — ваш сайт всегда в идеальном состоянии.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества (4 простых пункта) -->
+    <section id="features" class="section" style="background: #fefcf9;">
+        <div class="container">
+            <h2>Почему выбирают нас</h2>
+            <div class="features-grid">
+                <div class="feature-item"><div class="feature-emoji">⚡</div><h4>Быстро</h4><p>Сайты загружаются мгновенно, чистый код без мусора.</p></div>
+                <div class="feature-item"><div class="feature-emoji">🎯</div><h4>Под ключ</h4><p>От брифа до хостинга — берём всё на себя.</p></div>
+                <div class="feature-item"><div class="feature-emoji">💎</div><h4>Индивидуально</h4><p>Никаких шаблонов — каждый проект уникален.</p></div>
+                <div class="feature-item"><div class="feature-emoji">🤝</div><h4>Прозрачно</h4><p>Фиксированная смета и поэтапная оплата.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты (рандомные телефон и email) -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="contact-block">
+                <div style="font-size: 2rem; margin-bottom: 8px;">📞</div>
+                <h3 style="margin-bottom: 12px;">Свяжитесь с нами</h3>
+                <p>Позвоните или напишите — обсудим вашу задачу</p>
+                <a href="#" id="randomPhone" class="contact-phone">+7 (···) ···-··-··</a><br>
+                <a href="#" id="randomEmail" class="contact-email">fanntom@example.com</a>
+                <div style="margin-top: 28px;">
+                    <a href="#" id="fakeCallBtn" class="btn-primary" style="background: #3b82f6;">Написать в мессенджер</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p>© 2026 Fanntom — цифровая студия. Честные сайты для бизнеса.</p>
+    </div>
+</footer>
+
+<script>
+    // Генерация рандомных номеров телефонов и email (как в упрощённой версии)
+    function getRandomPhone() {
+        const codes = ['903', '909', '916', '921', '925', '977', '999', '985', '968'];
+        const code = codes[Math.floor(Math.random() * codes.length)];
+        const part1 = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+        const part2 = Math.floor(Math.random() * 100).toString().padStart(2, '0');
+        const part3 = Math.floor(Math.random() * 100).toString().padStart(2, '0');
+        return `+7 (${code}) ${part1}-${part2}-${part3}`;
+    }
+
+    function getRandomEmail() {
+        const domains = ['fanntom.ru', 'fanntom.team', 'studio-fanntom.ru', 'hello-fanntom.com'];
+        const names = ['contact', 'hello', 'studio', 'team', 'work', 'go'];
+        const name = names[Math.floor(Math.random() * names.length)];
+        const domain = domains[Math.floor(Math.random() * domains.length)];
+        return `${name}@${domain}`;
+    }
+
+    // Устанавливаем рандомные номера в контактной полоске
+    const phoneStrip = document.querySelectorAll('#phoneStrip a');
+    if (phoneStrip.length >= 2) {
+        const phone1 = getRandomPhone();
+        const phone2 = getRandomPhone();
+        phoneStrip[0].textContent = phone1;
+        phoneStrip[0].href = `tel:${phone1.replace(/[\s()-]/g, '')}`;
+        phoneStrip[1].textContent = phone2;
+        phoneStrip[1].href = `tel:${phone2.replace(/[\s()-]/g, '')}`;
+    }
+
+    // Основной контактный блок
+    const mainPhone = document.getElementById('randomPhone');
+    const mainEmail = document.getElementById('randomEmail');
+    const randPhoneMain = getRandomPhone();
+    const randEmailMain = getRandomEmail();
+    if (mainPhone) {
+        mainPhone.textContent = randPhoneMain;
+        mainPhone.href = `tel:${randPhoneMain.replace(/[\s()-]/g, '')}`;
+    }
+    if (mainEmail) {
+        mainEmail.textContent = randEmailMain;
+        mainEmail.href = `mailto:${randEmailMain}`;
+    }
+
+    // Кнопка "Написать в мессенджер" — показывает алерт с контактами
+    const fakeBtn = document.getElementById('fakeCallBtn');
+    if (fakeBtn) {
+        fakeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert(`📧 Свяжитесь с нами:\nТелефон: ${randPhoneMain}\nEmail: ${randEmailMain}\nМы ответим в течение часа.`);
+        });
+    }
+
+    // Плавный скролл для навигации
+    document.querySelectorAll('.nav a, .btn-small, .btn-primary[href="#contact"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const hash = this.getAttribute('href');
+            if (hash && hash.startsWith('#') && hash !== '#') {
+                e.preventDefault();
+                const targetId = hash.substring(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
